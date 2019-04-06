@@ -43,7 +43,7 @@ router.post('/', async (req, res, next) => {
     });
 
     let user = await newUser.save();
-    res.status(201).json({ user: user });
+    res.status(201).json({ user });
   } catch(err) {
     console.log(`[POST] /api/users error: ${err}`);
     err.status ? res.status(err.status).json({ Error: err }) :
@@ -112,7 +112,7 @@ try {
       if(user._id.equals(req.user._id)) {
         let deletedUser = await User.findByIdAndDelete(req.params.id);
 
-        res.json({ daleted: true, user: deletedUser });
+        res.json({ deleted: true, user: deletedUser });
       } else {
         throw {
           status: 401,
